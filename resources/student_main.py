@@ -53,7 +53,9 @@ class StudentRegister(Resource):
             filename = secure_filename(file.filename)
             file_name_list = filename.split(".")
             new_file_name = os.path.join(self.UPLOAD_FOLDER_PROFILE_PICTURES, data['roll_no'] + "-profile-picture."
-                                         + file_name_list[1])
+                                         + file_name_list[len(file_name_list)-1])
+            #  The length function is used for images with multiple '.' in their name.
+            #  This makes sure only the last string after the '.' is used that will be the extension
             file.save(new_file_name)
             student = StudentMain(data['roll_no'], data['reg_no'], data['first_name'], data['last_name'], data['dob'],
                                   data['school'], data['course'], data['discipline'], data['current_sem'],
