@@ -17,7 +17,6 @@ jwt = JWTManager(app)
 
 api.add_resource(StudentRegister, '/api/student_register')
 api.add_resource(StudentProfilePicture, '/api/<string:roll_no>/profile_picture')
-# api.add_resource(StudentProfilePicture, '/api/upload/student_profile_picture')
 
 if __name__ == '__main__':
     app.run()

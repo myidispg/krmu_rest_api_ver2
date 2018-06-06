@@ -1,6 +1,6 @@
 import os
 
-from flask import request, make_response, send_file, jsonify
+from flask import request, send_file
 from flask_restful import Resource, reqparse
 from werkzeug.utils import secure_filename
 
@@ -54,7 +54,6 @@ class StudentRegister(Resource):
             file_name_list = filename.split(".")
             new_file_name = os.path.join(self.UPLOAD_FOLDER_PROFILE_PICTURES, data['roll_no'] + "-profile-picture."
                                          + file_name_list[1])
-            # file_path = os.path.join(self.UPLOAD_FOLDER_PROFILE_PICTURES, filename)
             file.save(new_file_name)
             student = StudentMain(data['roll_no'], data['reg_no'], data['first_name'], data['last_name'], data['dob'],
                                   data['school'], data['course'], data['discipline'], data['current_sem'],
@@ -69,29 +68,6 @@ class StudentRegister(Resource):
                 'data': student.json(),
             }, 201
 
-    # def get(self, roll_no):
-    #     student = StudentMain.find_by_roll_number(roll_no)
-    #     if student:
-    #         filename = student.get_file_name(roll_no)
-    #         image_binary = roll_no
-    #         response = make_response(image_binary)
-    #         response.headers.set('Content-Type', 'image/' + self.IMAGE_ALLOWED_EXTENSIONS, filename=filename)
-    #         return response
-
-
-# class StudentProfilePicture(Resource):
-#
-#     def post(self):
-#         file = request.files['file']
-#         if file.filename == '':
-#             return {'message': 'The uploaded file has no filename'}
-#         if file and self.allowed_file(file.filename):
-#             filename = secure_filename(file.filename)
-#             file.save(os.path.join(self.UPLOAD_FOLDER_PROFILE_PICTURES, filename))
-#             return {
-#                 'message': 'File saved to database successfully!',
-#                 'filename': filename
-#                 }
 
 class StudentProfilePicture(Resource):
 
