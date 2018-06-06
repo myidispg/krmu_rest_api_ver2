@@ -1,6 +1,5 @@
 import sqlite3
 
-
 class StudentMain:
 
     def __init__(self, roll_no, reg_no, first_name, last_name, dob, school, course, discipline, current_sem, final_sem,
@@ -68,6 +67,21 @@ class StudentMain:
 
         connection.close()
         return student
+
+    @classmethod
+    def get_file_name(cls, roll_no):
+        connection = sqlite3.connect('main_student_database.db')
+        cursor = connection.cursor()
+
+        query = "SELECT image FROM student_main WHERE roll_no=?"
+        result = cursor.execute(query, (roll_no,))
+
+        filename = result.fetchone()
+        if filename is not None:
+            connection.close()
+            return filename
+        connection.close()
+        return False
 
     def save_to_db(self):  # this method requires an object of StudentMain class to be already created
         connection = sqlite3.connect('main_student_database.db')
