@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d656603-7e2d-4fec-ac54-45e77892e199" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/student_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/student_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/student_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/student_main.py" afterDir="false" />
-    </list>
+    <list default="true" id="7d656603-7e2d-4fec-ac54-45e77892e199" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
@@ -54,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="student_main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="student_main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/student_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="-416">
+              <caret line="67" column="52" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -100,8 +96,8 @@
         <option value="$PROJECT_DIR$/student_main.py" />
         <option value="$PROJECT_DIR$/create_tables_first.py" />
         <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/models/student_main.py" />
         <option value="$PROJECT_DIR$/resources/student_main.py" />
+        <option value="$PROJECT_DIR$/models/student_main.py" />
       </list>
     </option>
   </component>
@@ -288,26 +284,6 @@
           <url>file://$PROJECT_DIR$/resources/student_main.py</url>
           <line>97</line>
           <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/student_main.py</url>
-          <line>41</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/student_main.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/student_main.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/student_main.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="26" />
@@ -621,16 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/student_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/student_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
@@ -649,6 +615,16 @@
           <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="32" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/student_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-416">
+          <caret line="67" column="52" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
