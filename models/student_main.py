@@ -7,7 +7,7 @@ DATABASE = DATABASE
 class StudentMain:
 
     def __init__(self, roll_no, reg_no, first_name, last_name, dob, school, course, discipline, current_sem, final_sem,
-                 join_year, final_year, password, phone, mail, gender, tenth_marks, twelfth_marks, jee_score,
+                 join_year, final_year, tenth_marks, twelfth_marks, jee_score, password, phone, mail, gender,
                  father_first=None, father_last=None, mother_first=None, mother_last=None, image_path=None):
         self.roll_no = roll_no
         self.reg_no = reg_no

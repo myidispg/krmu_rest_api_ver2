@@ -1,9 +1,10 @@
 import os
 
 from flask import request, send_file
+from flask_jwt_extended import create_access_token, create_refresh_token
 from flask_restful import Resource, reqparse
 from werkzeug.utils import secure_filename
-
+from werkzeug.security import safe_str_cmp
 from models.student_main import StudentMain
 
 
@@ -85,3 +86,23 @@ class StudentProfilePicture(Resource):
             }
             return send_file(file_dictionary['filename'], mimetype='image/' + file_extension)
 
+
+class StudentLogin(Resource):
+
+    parser = reqparse.RequestParser()
+    parser.add_argument('roll_no', type=str, required=True, help='Roll No. is necessary')
+    parser.add_argument('password', type=str, required=True, help='Student password is necessary')
+
+    @classmethod
+    def post(cls):
+        data = cls.parser.parse_args()
+
+        student = StudentMain.find_by_roll_number(data['roll_no'])
+        if student and safe_str_cmp(student.password, data['password']):
+            access_token = create_access_token(identity=student.roll_no, fresh=True)
+            refresh_token = create_refresh_token(student.roll_no)
+            return {
+                'access_token' : access_token,
+                'refresh_token': refresh_token
+            }, 200
+        return {'message': 'Invalid credentials'}, 401
