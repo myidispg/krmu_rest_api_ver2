@@ -33,9 +33,10 @@ class StudentRegister(Resource):
     parser.add_argument('mail', type=str, required=True, help='Student mail is necessary')
     parser.add_argument('gender', type=str, required=True, help='Student gender is necessary')
 
-    ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg'])
+    ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'ppt'])
     IMAGE_ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
     UPLOAD_FOLDER_PROFILE_PICTURES = "profile-pictures"
+    UPLOAD_FOLDER_PROFILE_PICTURES_PATH = "C:\KRMU_App\database\profile-pictures"
 
     def allowed_file(self, filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in self.ALLOWED_EXTENSIONS
@@ -52,8 +53,8 @@ class StudentRegister(Resource):
         if file and self.allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file_name_list = filename.split(".")
-            new_file_name = os.path.join(self.UPLOAD_FOLDER_PROFILE_PICTURES, data['roll_no'] + "-profile-picture."
-                                         + file_name_list[len(file_name_list)-1])
+            new_file_name = os.path.normpath(os.path.join(self.UPLOAD_FOLDER_PROFILE_PICTURES_PATH, data['roll_no'] +
+                                                          "-profile-picture." + file_name_list[len(file_name_list)-1]))
             #  The length function is used for images with multiple '.' in their name.
             #  This makes sure only the last string after the '.' is used that will be the extension
             file.save(new_file_name)
