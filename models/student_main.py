@@ -1,7 +1,7 @@
 import sqlite3
-from create_tables_first import DATABASE
+from create_tables_first import STUDENT_DATABASE
 
-DATABASE = DATABASE
+DATABASE = STUDENT_DATABASE
 
 
 class StudentMain:
@@ -36,7 +36,7 @@ class StudentMain:
 
     @classmethod
     def find_by_roll_number(cls, roll_no):
-        connection = sqlite3.connect(DATABASE)
+        connection = sqlite3.connect(STUDENT_DATABASE)
         cursor = connection.cursor()
 
         query = "SELECT * FROM student_main WHERE roll_no=?"
@@ -55,7 +55,7 @@ class StudentMain:
 
     @classmethod
     def find_by_reg_number(cls, reg_no):
-        connection = sqlite3.connect(DATABASE)
+        connection = sqlite3.connect(STUDENT_DATABASE)
         cursor = connection.cursor()
 
         query = "SELECT * FROM student_main WHERE reg_no=?"
@@ -74,7 +74,7 @@ class StudentMain:
 
     @classmethod
     def get_file_name(cls, roll_no):
-        connection = sqlite3.connect(DATABASE)
+        connection = sqlite3.connect(STUDENT_DATABASE)
         cursor = connection.cursor()
 
         query = "SELECT image FROM student_main WHERE roll_no=?"
@@ -88,7 +88,7 @@ class StudentMain:
         return False
 
     def save_to_db(self):  # this method requires an object of StudentMain class to be already created
-        connection = sqlite3.connect(DATABASE)
+        connection = sqlite3.connect(STUDENT_DATABASE)
         cursor = connection.cursor()
 
         query = "INSERT INTO student_main VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," \

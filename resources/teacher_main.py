@@ -13,6 +13,7 @@ class TeacherRegister(Resource):
     parser.add_argument("teacher_code", type=str, required=True, help='teacher_code cannot be blank')
     parser.add_argument('teacher_first_name', type=str, required=True, help='teacher_first_name cannot be blank')
     parser.add_argument('teacher_last_name', type=str, required=True, help='teacher_last_name cannot be blank')
+    parser.add_argument('password', type=str, required=True, help='password cannot be blank')
     parser.add_argument('department', type=str, required=True, help='department cannot be blank')
     parser.add_argument('employment_status', type=str, required=True, help='employment_status cannot be blank')
 
@@ -42,7 +43,7 @@ class TeacherRegister(Resource):
             #  This makes sure only the last string after the '.' is used that will be the extension
             file.save(new_file_name)
             student = TeacherMain(data['teacher_code'], data['teacher_first_name'], data['teacher_last_name'],
-                                  data['department'], data['employment_status'], new_file_name)
+                                  data['password'], data['department'], data['employment_status'], new_file_name)
             student.save_to_db()
             return {
                 'message': 'Teacher registration successful!',
@@ -62,3 +63,23 @@ class TeacherProfilePicture(Resource):
                 'filename': filename
             }
             return send_file(file_dictionary['filename'], mimetype='image/' + file_extension)
+
+
+class TeacherLogin(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('teacher_code', type=str, required=True, help='teacher_code is required for login')
+    parser.add_argument('password', type=str, required=True, help='password is required for login')
+
+    @classmethod
+    def post(cls):
+        data = cls.parser.parse_args()
+
+        teacher = TeacherMain.find_by_teacher_code(data['teacher_code'])
+        if teacher and safe_str_cmp(teacher.password, data['password']):
+            access_token = create_access_token(identity=teacher.teacher_code, fresh=True)
+            refresh_token = create_refresh_token(teacher.teacher_code)
+            return {
+                       'access_token': access_token,
+                       'refresh_token': refresh_token
+                   }, 200
+        return {'message': 'Invalid credentials'}, 401

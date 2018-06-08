@@ -1,18 +1,19 @@
 import sqlite3
-from create_tables_first import DATABASE
+from create_tables_first import STUDENT_DATABASE, TEACHER_DATABASE
 
-DATABASE = DATABASE
+DATABASE = TEACHER_DATABASE
 
 
 class TeacherMain:
 
-    def __init__(self, teacher_code, teacher_first_name, teacher_last_name, department, employment_status, image):
+    def __init__(self, teacher_code, teacher_first_name, teacher_last_name, password, department, employment_status, image):
         self.teacher_code = teacher_code
         self.teacher_first_name = teacher_first_name
         self.teacher_last_name = teacher_last_name
         self.department = department
         self.employment_status = employment_status
         self.image = image
+        self.password = password
 
     @classmethod
     def find_by_teacher_code(cls, teacher_code):
@@ -24,7 +25,7 @@ class TeacherMain:
 
         row = result.fetchone()
         if row is not None:
-            teacher = cls(row[0], row[1], row[2]. row[3], row[5], row[6])
+            teacher = cls(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
         else:
             teacher = None
 
@@ -35,10 +36,10 @@ class TeacherMain:
         connection = sqlite3.connect(DATABASE)
         cursor = connection.cursor()
 
-        query = "INSERT INTO teacher_main VALUES(?, ?, ?, ?, ?, ?)"
+        query = "INSERT INTO teacher_main VALUES(?, ?, ?, ?, ?, ?, ?)"
 
-        cursor.execute(query, (self.teacher_code, self.teacher_first_name, self.teacher_last_name, self.department,
-                               self.employment_status, self.image))
+        cursor.execute(query, (self.teacher_code, self.teacher_first_name, self.teacher_last_name, self.password,
+                               self.department, self.employment_status, self.image))
 
         connection.commit()
         connection.close()

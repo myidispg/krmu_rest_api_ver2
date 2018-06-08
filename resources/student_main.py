@@ -61,11 +61,10 @@ class StudentRegister(Resource):
             file.save(new_file_name)
             student = StudentMain(data['roll_no'], data['reg_no'], data['first_name'], data['last_name'], data['dob'],
                                   data['school'], data['course'], data['discipline'], data['current_sem'],
-                                  data['final_sem'],
-                                  data['join_year'], data['final_year'], data['password'], data['phone'],
-                                  data['mail'], data['gender'], data['tenth_marks'], data['twelfth_marks'],
-                                  data['jee_score'], data['father_first'], data['father_last'], data['mother_first'],
-                                  data['mother_last'], new_file_name)
+                                  data['final_sem'], data['join_year'], data['final_year'], data['tenth_marks'],
+                                  data['twelfth_marks'], data['jee_score'], data['password'], data['phone'],
+                                  data['mail'], data['gender'], data['father_first'], data['father_last'],
+                                  data['mother_first'], data['mother_last'], new_file_name)
             student.save_to_db()
             return {
                 'message': 'Student registration successful!',
