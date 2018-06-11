@@ -1,3 +1,4 @@
+from flask import request
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
 
@@ -28,7 +29,41 @@ class GetStudentAttendance(Resource):
                                                                                                    student.roll_no,
                                                                                                    student.current_sem))
 
-        return student_attendance
-        # return {
-        #     'message': 'No student with that roll number exists.'
-        # }
+            return student_attendance
+        else:
+            return {
+                'message': 'No student with that roll number exists.'
+            }
+
+
+class GetStudentAttendanceSemester(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('roll_no', type=str, required=True, help="Student roll number is required")
+
+    @jwt_required
+    def post(self, semester):
+        data = GetStudentAttendance.parser.parse_args()
+
+        student = StudentMain.find_by_roll_number(data['roll_no'])
+        student_attendance = {
+            'roll_no': student.roll_no,
+            'semester': semester,
+            'subjects': []
+        }
+        if student:
+            subject_code_list = Subjects.find_subject(student.discipline, semester)
+            for subject in subject_code_list:
+                subject_attendance = StudentAttendance.get_attendance_max_present(subject, student.roll_no, semester)
+                attendance_details = {
+                    'subject_name': Subjects.get_subject_name(subject),
+                    'subject_code': subject_attendance['subject_code'],
+                    'max_attendance': subject_attendance['max_attendance'],
+                    'present_attendance': subject_attendance['present_attendance']
+                }
+                student_attendance['subjects'].append(attendance_details)
+            return student_attendance
+        else:
+            return {
+                'message': 'No student with that roll number exists.'
+            }
+

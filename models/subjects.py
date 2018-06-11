@@ -39,4 +39,19 @@ class Subjects:
 
         return subjects_code_list
 
+    @classmethod
+    def get_subject_name(cls, subject_code):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT subject_name FROM subjects WHERE subject_code = ?"
+        result = cursor.execute(query, (subject_code,))
+
+        row = result.fetchone()
+
+        connection.close()
+        if row is not None:
+            return row[0]
+        return {'message': 'No subject found with that subject code'}
+
 
