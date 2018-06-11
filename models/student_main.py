@@ -87,6 +87,25 @@ class StudentMain:
         connection.close()
         return False
 
+    # @classmethod
+    # def get_discipline_sem(cls, roll_no):
+    #     connection = sqlite3.connect(STUDENT_DATABASE)
+    #     cursor = connection.cursor()
+    #
+    #     query = "SELECT * FROM student_main WHERE roll_no=?"
+    #     result = cursor.execute(query, (roll_no,))
+    #
+    #     row = result.fetchone()
+    #     if row is not None:
+    #         student = cls(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10],
+    #                       row[11], row[16], row[17], row[18], row[20], row[21], row[22], row[23], row[12], row[13],
+    #                       row[14], row[15], row[19])
+    #     else:
+    #         student = None
+    #
+    #     connection.close()
+    #     return student
+
     def save_to_db(self):  # this method requires an object of StudentMain class to be already created
         connection = sqlite3.connect(STUDENT_DATABASE)
         cursor = connection.cursor()
