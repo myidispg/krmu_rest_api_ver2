@@ -1,4 +1,3 @@
-from flask import request
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
 
@@ -67,3 +66,22 @@ class GetStudentAttendanceSemester(Resource):
                 'message': 'No student with that roll number exists.'
             }
 
+
+class UpdateStudentAttendance(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('subject_code', type=str, required=True, help='subject_code cannot be blank')
+    parser.add_argument('discipline', type=str, required=True, help='discipline cannot be blank')
+    parser.add_argument('semester', type=str, required=True, help='semester cannot be blank')
+    parser.add_argument('attendance', type=dict, action='append', required=True, help='attendance cannot be blank')
+
+    @jwt_required
+    def post(self):
+        data = UpdateStudentAttendance.parser.parse_args()
+        attendance = data['attendance']
+        # StudentAttendance.set_attendance(data['subject_code'], data['semester'], attendance)
+
+        for student in attendance:
+            dictionary = student
+            roll_no = dictionary['roll_no']
+            present = dictionary['present']
+            StudentAttendance.set_attendance(data['subject_code'], data['semester'], roll_no, present)

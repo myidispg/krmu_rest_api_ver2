@@ -33,3 +33,30 @@ class StudentAttendance:
                 }
         return None
 
+    @classmethod
+    def set_attendance(cls, subject_code, semester, roll_no, present):
+        semester = int(semester)
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query_check_presence = "SELECT * FROM student_attendance WHERE roll_no = ? AND subject_code = ?" \
+                               " AND semester = ?"
+        result = cursor.execute(query_check_presence, (roll_no, subject_code, semester))
+        row = result.fetchone()
+        if row is not None and present == 'yes':
+            query_update_attendance = "UPDATE student_attendance SET present_attendance = present_attendance + 1," \
+                                          " max_attendance = max_attendance + 1 WHERE roll_no = ? AND" \
+                                          " subject_code = ? AND semester = ?"
+            cursor.execute(query_update_attendance, (roll_no, subject_code, semester,))
+        else:
+            if present == 'yes':
+                query_insert_attendance = "INSERT INTO student_attendance values " \
+                                              "(?,?,?,1,1)"
+                cursor.execute(query_insert_attendance, (roll_no, subject_code, semester,))
+            else:
+                query_insert_attendance_1 = "INSERT INTO student_attendance values " \
+                                              "(?,?,?,1,0)"
+                cursor.execute(query_insert_attendance_1, (roll_no, subject_code, semester,))
+        connection.commit()
+        connection.close()
+        return {'message': 'attendance updated'}
