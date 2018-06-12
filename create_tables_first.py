@@ -55,11 +55,21 @@ create_table_subjects = "CREATE TABLE IF NOT EXISTS subjects(discipline text, su
 create_table_time_table = "CREATE TABLE IF NOT EXISTS time_table (subject_code text, subject_name text," \
                           " teacher_first text, teacher_last text, discipline text, semester integer," \
                           " day text, start_time text, end_time text)"
+create_table_material_upload = "CREATE TABLE IF NOT EXISTS material_teacher_upload (teacher_code text," \
+                               " material_code text, upload_date text, course text," \
+                                " discipline text, subject_code text, semester integer, deadline_date text," \
+                                " type text, material_path text)"
+create_table_material_submissions = "CREATE TABLE IF NOT EXISTS material_submission (material_code text, " \
+                                       "student_roll_no text, submission_date text, marks_obtained integer," \
+                                       " submission_path text)"
+
 
 cursor.execute(create_table_schools)
 cursor.execute(create_table_discipline)
 cursor.execute(create_table_subjects)
 cursor.execute(create_table_time_table)
+cursor.execute(create_table_material_upload)
+cursor.execute(create_table_material_submissions)
 
 connection.commit()
 connection.close()

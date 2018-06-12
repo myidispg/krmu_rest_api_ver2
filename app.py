@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
+from resources.assignment import MaterialUploadResource
 from resources.student_attendance import GetStudentAttendance, GetStudentAttendanceSemester, UpdateStudentAttendance
 from resources.student_main import *
 from resources.student_marks import GetStudentMarks, GetStudentMarksSemester
@@ -29,6 +30,7 @@ api.add_resource(GetStudentMarksSemester, '/api/get_student_semester_marks/<stri
 api.add_resource(TeacherRegister, '/api/teacher/teacher_register')
 api.add_resource(TeacherProfilePicture, '/api/teacher/<string:teacher_code>/profile_picture')
 api.add_resource(TeacherLogin, '/api/teacher/teacher_login')
+api.add_resource(MaterialUploadResource, '/api/teacher/upload_study_material')
 
 api.add_resource(TokenRefresh, '/api/token_refresh')
 
