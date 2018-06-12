@@ -13,6 +13,7 @@ class MaterialSubmissionResource:
         self.submission_date = submission_date
         self.marks_obtained = marks_obtained
         self.submission_path = submission_path
+        pass
 
     def save_to_db(self):
         connection = sqlite3.connect(DATABASE)
