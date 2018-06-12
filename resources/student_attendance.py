@@ -24,9 +24,14 @@ class GetStudentAttendance(Resource):
         if student:
             subject_code_list = Subjects.find_subject(student.discipline, student.current_sem)
             for subject in subject_code_list:
-                student_attendance['subjects'].append(StudentAttendance.get_attendance_max_present(subject,
-                                                                                                   student.roll_no,
-                                                                                                   student.current_sem))
+                subject_attendance = StudentAttendance.get_attendance_max_present(subject, student.roll_no, student.current_sem)
+                attendance_details = {
+                    'subject_name': Subjects.get_subject_name(subject),
+                    'subject_code': subject_attendance['subject_code'],
+                    'max_attendance': subject_attendance['max_attendance'],
+                    'present_attendance': subject_attendance['present_attendance']
+                }
+                student_attendance['subjects'].append(attendance_details)
 
             return student_attendance
         else:

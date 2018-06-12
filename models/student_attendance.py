@@ -23,15 +23,19 @@ class StudentAttendance:
                 " AND roll_no = ? AND semester = ?"
         result = cursor.execute(query, (subject_code, roll_no, semester,))
 
-        row = result.fetchall()
-
-        for column in row:
-                return {
+        row = result.fetchone()
+        if row is not None:
+            return {
+                'subject_code': subject_code,
+                'max_attendance': row[0],
+                'present_attendance': row[1]
+            }
+        else:
+            return {
                     'subject_code': subject_code,
-                    'max_attendance': column[0],
-                    'present_attendance': column[1]
-                }
-        return None
+                    'max_attendance': 0,
+                    'present_attendance': 0
+            }
 
     @classmethod
     def set_attendance(cls, subject_code, semester, roll_no, present):
