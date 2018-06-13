@@ -2,7 +2,8 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
-from resources.assignment import MaterialUploadResource, MaterialSubmissionResource, StudentAssignmentMarksResource
+from resources.assignment import MaterialUploadResource, MaterialSubmissionResource, StudentAssignmentMarksResource, \
+    TeacherAllAssignmentResource, TeacherSingleAssignmentResource, TeacherSingleAssignmentFileResource
 from resources.student_attendance import GetStudentAttendance, GetStudentAttendanceSemester, UpdateStudentAttendance
 from resources.student_main import *
 from resources.student_marks import GetStudentMarks, GetStudentMarksSemester
@@ -33,6 +34,9 @@ api.add_resource(TeacherProfilePicture, '/api/teacher/<string:teacher_code>/prof
 api.add_resource(TeacherLogin, '/api/teacher/teacher_login')
 api.add_resource(MaterialUploadResource, '/api/teacher/upload_study_material')
 api.add_resource(StudentAssignmentMarksResource, '/api/teacher/assignment_marks_upload')
+api.add_resource(TeacherAllAssignmentResource, '/api/teacher/get_all_assignments_teacher_code/<string:teacher_code>')
+api.add_resource(TeacherSingleAssignmentResource, '/api/teacher/get_single_assignment/<string:material_code>')
+api.add_resource(TeacherSingleAssignmentFileResource, '/api/teacher/get_single_assignment_file/<string:material_code>')
 
 api.add_resource(TokenRefresh, '/api/token_refresh')
 

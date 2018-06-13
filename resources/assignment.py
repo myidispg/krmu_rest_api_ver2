@@ -1,6 +1,7 @@
 import os
 
 import werkzeug
+from flask import send_file
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
 from werkzeug.utils import secure_filename
@@ -134,10 +135,40 @@ class StudentAssignmentMarksResource(Resource):
         return {'message': 'Student submission marks updated successfully'}
 
 
+class TeacherAllAssignmentResource(Resource):
+
+    def get(self, teacher_code):
+        study_material_all = {'study_material': []}
+
+        material_list = MaterialUploadModel.get_all_by_teacher_code(teacher_code)
+        for material in material_list:
+            filename = material['material_path']
+            file_list = filename.split('.')
+            file_extension = file_list[1]
+            material['material_path'] = file_extension
+            study_material_all['study_material'].append(material)
+
+        return study_material_all
 
 
+class TeacherSingleAssignmentResource(Resource):
+
+    def get(self, material_code):
+        material = MaterialUploadModel.get_material_by_material_code(material_code)
+
+        return material
 
 
+class TeacherSingleAssignmentFileResource(Resource):
 
+    def get(self, material_code):
+        material_path = MaterialUploadModel.get_material_path_by_material_code(material_code)
 
-
+        filename = material_path
+        file_list = filename.split('.')
+        file_extension = file_list[1]
+        file_dictionary = {
+            'filename': filename
+        }
+        # return send_file(file_dictionary['filename'], mimetype='text/' + file_extension)
+        return send_file(file_dictionary['filename'])

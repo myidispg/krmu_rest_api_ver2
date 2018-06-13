@@ -52,6 +52,71 @@ class MaterialUploadModel:
                 highest_counter = old_counter
         return str(highest_counter+1)
 
+    @staticmethod
+    def get_material_by_material_code(material_code):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * from material_teacher_upload WHERE material_code = ?"
+        result = cursor.execute(query, (material_code,))
+
+        row = result.fetchone()
+        material = {
+            'teacher_code': row[0],
+            material_code: material_code,
+            'upload_date': row[2],
+            'course': row[3],
+            'discipline': row[4],
+            'subject_code': row[5],
+            'semester': row[6],
+            'deadline_date': row[7],
+            'type': row[8],
+            'material_path': row[9]
+        }
+        connection.close()
+        return material
+
+    @staticmethod
+    def get_material_path_by_material_code(material_code):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT material_path from material_teacher_upload WHERE material_code = ?"
+        result = cursor.execute(query, (material_code,))
+
+        row = result.fetchone()
+
+        row = ''.join(row)
+
+        connection.close
+        return row
+
+    @staticmethod
+    def get_all_by_teacher_code(teacher_code):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * from material_teacher_upload WHERE teacher_code = ?"
+        result = cursor.execute(query, (teacher_code,))
+
+        rows = result.fetchall()
+        row_list = []
+        for row in rows:
+            dictionary = {
+                'material_code': row[1],
+                'upload_date': row[2],
+                'course': row[3],
+                'discipline': row[4],
+                'subject_code': row[5],
+                'semester': row[6],
+                'deadline_date': row[7],
+                'type': row[8],
+                'material_path': row[9]
+            }
+            row_list.append(dictionary)
+        connection.close()
+        return row_list
+
     def save_to_db(self):
         connection = sqlite3.connect(DATABASE)
         cursor = connection.cursor()
