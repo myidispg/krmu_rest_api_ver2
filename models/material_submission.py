@@ -22,6 +22,18 @@ class MaterialSubmissionModel:
         query = "UPDATE material_submission SET submission_date = ? , submission_path = ? WHERE material_code = ?" \
                 " AND student_roll_no = ?"
         cursor.execute(query, (submission_date, submission_path, material_code, student_roll_no))
+
+        connection.commit()
+        connection.close()
+
+    @staticmethod
+    def add_student_marks(material_code, student_roll_no, marks_obtained):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "UPDATE material_submission SET marks_obtained = ? WHERE material_code = ? AND student_roll_no = ?"
+        cursor.execute(query, (marks_obtained, material_code, student_roll_no,))
+
         connection.commit()
         connection.close()
 

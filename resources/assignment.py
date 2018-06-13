@@ -120,6 +120,20 @@ class MaterialSubmissionResource(Resource):
             return {'message': 'file submission successful'}
 
 
+class StudentAssignmentMarksResource(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('material_code', type=str, required=True, help='material_code is required')
+    parser.add_argument('student_roll_no', type=str, required=True, help='student_roll_no is required')
+    parser.add_argument('marks_obtained', type=str, required=True, help='marks_obtained is required')
+
+    def post(self):
+        data = self.parser.parse_args()
+
+        MaterialSubmissionModel.add_student_marks(data['material_code'], data['student_roll_no'], data['marks_obtained'])
+
+        return {'message': 'Student submission marks updated successfully'}
+
+
 
 
 
