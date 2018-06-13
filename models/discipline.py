@@ -13,3 +13,17 @@ class Discipline:
         self.duration_sem = duration_sem
         self.school = school
 
+    @staticmethod
+    def get_short_form(discipline):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT short_form FROM disciplines WHERE discipline = ?"
+        result = cursor.execute(query, (discipline,))
+
+        row = result.fetchone()
+        connection.close()
+        row_string = ''.join(row)
+        return row_string
+
+

@@ -87,6 +87,26 @@ class StudentMain:
         connection.close()
         return False
 
+    @staticmethod
+    def find_by_course_discipline_semester(course, discipline, semester):
+        connection = sqlite3.connect(STUDENT_DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT roll_no FROM student_main WHERE course=? AND discipline=? AND current_sem=?"
+        result = cursor.execute(query, (course, discipline, semester,))
+
+        rows = result.fetchall()
+        roll_no_list = []
+        if rows is not None:
+            for row in rows:
+                _str = "".join(row)
+                roll_no_list.append(_str)
+            connection.close()
+            return roll_no_list
+        else:
+            connection.close()
+            return None
+
     def save_to_db(self):  # this method requires an object of StudentMain class to be already created
         connection = sqlite3.connect(STUDENT_DATABASE)
         cursor = connection.cursor()

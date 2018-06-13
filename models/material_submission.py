@@ -5,7 +5,7 @@ from create_tables_first import SCHOOLS_DATABASE
 DATABASE = SCHOOLS_DATABASE
 
 
-class MaterialSubmissionResource:
+class MaterialSubmissionModel:
 
     def __init__(self, material_code, student_roll_no, submission_date, marks_obtained, submission_path):
         self.material_code = material_code
@@ -13,7 +13,17 @@ class MaterialSubmissionResource:
         self.submission_date = submission_date
         self.marks_obtained = marks_obtained
         self.submission_path = submission_path
-        pass
+
+    @staticmethod
+    def add_student_submission(submission_date, submission_path, material_code, student_roll_no):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "UPDATE material_submission SET submission_date = ? , submission_path = ? WHERE material_code = ?" \
+                " AND student_roll_no = ?"
+        cursor.execute(query, (submission_date, submission_path, material_code, student_roll_no))
+        connection.commit()
+        connection.close()
 
     def save_to_db(self):
         connection = sqlite3.connect(DATABASE)
