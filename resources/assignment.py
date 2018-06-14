@@ -151,15 +151,42 @@ class TeacherAllAssignmentResource(Resource):
         return study_material_all
 
 
-class TeacherSingleAssignmentResource(Resource):
+class StudentAllAssignmentsResource(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('roll_no', type=str, required=True, help='roll_no is required')
 
-    def get(self, material_code):
+    def post(self):
+        data = self.parser.parse_args()
+        student = StudentMain.find_by_roll_number(data['roll_no'])
+
+        discipline = student.discipline
+        semester = student.current_sem
+
+        material_list = MaterialUploadModel.get_all_by_discipline_semester(discipline, semester)
+
+        return material_list
+
+
+class StudentSingleAssignmentResource(Resource):  # Gets the details of a single assignment
+
+    def get(self, material_code, roll_no):
         material = MaterialUploadModel.get_material_by_material_code(material_code)
+        material['submission_date'] = MaterialSubmissionModel.get_submission_date_by_material_code(material_code, roll_no)
 
         return material
 
 
-class TeacherSingleAssignmentFileResource(Resource):
+class TeacherSingleAssignmentResource(Resource):  # lets the teacher view a single assignment with submissions
+
+    def get(self, material_code):
+        material = MaterialUploadModel.get_material_by_material_code(material_code)
+        submissions_list = MaterialSubmissionModel.get_all_by_material_code(material_code)
+        material['submissions'] = submissions_list
+
+        return material
+
+
+class TeacherSingleAssignmentFileResource(Resource):  # Get the uploaded file by teacher
 
     def get(self, material_code):
         material_path = MaterialUploadModel.get_material_path_by_material_code(material_code)
@@ -172,3 +199,4 @@ class TeacherSingleAssignmentFileResource(Resource):
         }
         # return send_file(file_dictionary['filename'], mimetype='text/' + file_extension)
         return send_file(file_dictionary['filename'])
+

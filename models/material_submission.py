@@ -37,6 +37,41 @@ class MaterialSubmissionModel:
         connection.commit()
         connection.close()
 
+    @staticmethod
+    def get_all_by_material_code(material_code):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM material_submission WHERE material_code = ?"
+        result = cursor.execute(query, (material_code,))
+
+        rows = result.fetchall()
+        row_list = []
+        for row in rows:
+            dictionary = {
+                'student_roll_no': row[1],
+                'submission_date': row[2],
+                'marks_obtained': row[3]
+            }
+            row_list.append(dictionary)
+        connection.close()
+        return row_list
+
+    @staticmethod
+    def get_submission_date_by_material_code(material_code, roll_no):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT submission_date from material_submission where material_code = ? AND student_roll_no = ?"
+        result = cursor.execute(query, (material_code, roll_no,))
+
+        row = result.fetchone()
+        if row[0] is not None:
+            row = "".join(row)
+        else:
+            row = "None"
+        return row
+
     def save_to_db(self):
         connection = sqlite3.connect(DATABASE)
         cursor = connection.cursor()

@@ -117,6 +117,32 @@ class MaterialUploadModel:
         connection.close()
         return row_list
 
+    @staticmethod
+    def get_all_by_discipline_semester(discipline, semester):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * from material_teacher_upload WHERE discipline = ? AND semester = ?"
+        result = cursor.execute(query, (discipline, semester,))
+
+        rows = result.fetchall()
+        row_list = []
+        for row in rows:
+            dictionary = {
+                'material_code': row[1],
+                'upload_date': row[2],
+                'course': row[3],
+                'discipline': row[4],
+                'subject_code': row[5],
+                'semester': row[6],
+                'deadline_date': row[7],
+                'type': row[8],
+                'material_path': row[9]
+            }
+            row_list.append(dictionary)
+        connection.close()
+        return row_list
+
     def save_to_db(self):
         connection = sqlite3.connect(DATABASE)
         cursor = connection.cursor()
