@@ -54,4 +54,20 @@ class Subjects:
             return row[0]
         return {'message': 'No subject found with that subject code'}
 
+    @classmethod
+    def get_subject_object(cls, subject_code):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM subjects WHERE subject_code = ?"
+        result = cursor.execute(query, (subject_code,))
+
+        row = result.fetchone()
+
+        connection.close()
+        if row is not None:
+            subject = Subjects(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+            return subject
+        return {'message': 'No subject found with that subject code'}
+
 

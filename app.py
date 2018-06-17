@@ -9,6 +9,7 @@ from resources.student_attendance import GetStudentAttendance, GetStudentAttenda
 from resources.student_main import *
 from resources.student_marks import GetStudentMarks, GetStudentMarksSemester
 from resources.teacher_main import TeacherRegister, TeacherProfilePicture, TeacherLogin
+from resources.time_table import TimeTableStudent, TimeTableTeacher
 
 app = Flask(__name__)
 
@@ -31,6 +32,7 @@ api.add_resource(GetStudentMarksSemester, '/api/get_student_semester_marks/<stri
 api.add_resource(MaterialSubmissionResource, '/api/submit_material_student')
 api.add_resource(StudentSingleAssignmentResource, '/api/get_single_assignment/<string:material_code>&<string:roll_no>')
 api.add_resource(StudentAllAssignmentsResource, '/api/get_all_assignments')
+api.add_resource(TimeTableStudent, '/api/time_table_student')
 
 api.add_resource(TeacherRegister, '/api/teacher/teacher_register')
 api.add_resource(TeacherProfilePicture, '/api/teacher/<string:teacher_code>/profile_picture')
@@ -40,6 +42,7 @@ api.add_resource(StudentAssignmentMarksResource, '/api/teacher/assignment_marks_
 api.add_resource(TeacherAllAssignmentResource, '/api/teacher/get_all_assignments_teacher_code/<string:teacher_code>')
 api.add_resource(TeacherSingleAssignmentResource, '/api/teacher/get_single_assignment/<string:material_code>')
 api.add_resource(TeacherSingleAssignmentFileResource, '/api/teacher/get_single_assignment_file/<string:material_code>')
+api.add_resource(TimeTableTeacher, '/api/teacher/time_table_teacher')
 
 api.add_resource(TokenRefresh, '/api/token_refresh')
 
