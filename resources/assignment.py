@@ -171,7 +171,8 @@ class StudentSingleAssignmentResource(Resource):  # Gets the details of a single
 
     def get(self, material_code, roll_no):
         material = MaterialUploadModel.get_material_by_material_code(material_code)
-        material['submission_date'] = MaterialSubmissionModel.get_submission_date_by_material_code(material_code, roll_no)
+        material['submission_date'] = MaterialSubmissionModel.get_submission_date_by_material_code(material_code,
+                                                                                                   roll_no)
 
         return material
 

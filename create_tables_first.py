@@ -62,6 +62,8 @@ create_table_material_upload = "CREATE TABLE IF NOT EXISTS material_teacher_uplo
 create_table_material_submissions = "CREATE TABLE IF NOT EXISTS material_submission (material_code text, " \
                                        "student_roll_no text, submission_date text, marks_obtained integer," \
                                        " submission_path text)"
+create_table_events = "CREATE TABLE IF NOT EXISTS events (event_code text, event_name text, event_description text," \
+                      " start_date text, end_date text, start_time text, end_time text, venue text, file_path text)"
 
 
 cursor.execute(create_table_schools)
@@ -70,6 +72,7 @@ cursor.execute(create_table_subjects)
 cursor.execute(create_table_time_table)
 cursor.execute(create_table_material_upload)
 cursor.execute(create_table_material_submissions)
+cursor.execute(create_table_events)
 
 connection.commit()
 connection.close()

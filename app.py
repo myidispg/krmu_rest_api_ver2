@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 from resources.assignment import MaterialUploadResource, MaterialSubmissionResource, StudentAssignmentMarksResource, \
     TeacherAllAssignmentResource, TeacherSingleAssignmentFileResource, \
     StudentSingleAssignmentResource, TeacherSingleAssignmentResource, StudentAllAssignmentsResource
+from resources.events import EventsRegistration, EventFile, EventSingle
 from resources.student_attendance import GetStudentAttendance, GetStudentAttendanceSemester, UpdateStudentAttendance
 from resources.student_main import *
 from resources.student_marks import GetStudentMarks, GetStudentMarksSemester
@@ -45,6 +46,10 @@ api.add_resource(TeacherSingleAssignmentFileResource, '/api/teacher/get_single_a
 api.add_resource(TimeTableTeacher, '/api/teacher/time_table_teacher')
 
 api.add_resource(TokenRefresh, '/api/token_refresh')
+
+api.add_resource(EventsRegistration, '/api/events/registration')
+api.add_resource(EventFile, '/api/events/file/<string:event_code>')
+api.add_resource(EventSingle, '/api/events/single/<string:event_code>')
 
 
 if __name__ == '__main__':
