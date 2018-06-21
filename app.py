@@ -5,7 +5,7 @@ from flask_jwt_extended import JWTManager
 from resources.assignment import MaterialUploadResource, MaterialSubmissionResource, StudentAssignmentMarksResource, \
     TeacherAllAssignmentResource, TeacherSingleAssignmentFileResource, \
     StudentSingleAssignmentResource, TeacherSingleAssignmentResource, StudentAllAssignmentsResource
-from resources.daily_attendance import DailyAttendanceUpdateResource
+from resources.daily_attendance import GetDailyAttendanceStudent
 from resources.events import EventsRegistration, EventFile, EventSingle, EventsAll
 from resources.student_attendance import GetStudentAttendance, GetStudentAttendanceSemester, UpdateStudentAttendance
 from resources.student_main import *
@@ -35,6 +35,7 @@ api.add_resource(MaterialSubmissionResource, '/api/submit_material_student')
 api.add_resource(StudentSingleAssignmentResource, '/api/get_single_assignment/<string:material_code>&<string:roll_no>')
 api.add_resource(StudentAllAssignmentsResource, '/api/get_all_assignments')
 api.add_resource(TimeTableStudent, '/api/time_table_student')
+api.add_resource(GetDailyAttendanceStudent, '/api/get_daily_attendance/q=<string:roll_no>&q=<string:subject_code>')
 
 api.add_resource(TeacherRegister, '/api/teacher/teacher_register')
 api.add_resource(TeacherProfilePicture, '/api/teacher/<string:teacher_code>/profile_picture')
@@ -45,7 +46,6 @@ api.add_resource(TeacherAllAssignmentResource, '/api/teacher/get_all_assignments
 api.add_resource(TeacherSingleAssignmentResource, '/api/teacher/get_single_assignment/<string:material_code>')
 api.add_resource(TeacherSingleAssignmentFileResource, '/api/teacher/get_single_assignment_file/<string:material_code>')
 api.add_resource(TimeTableTeacher, '/api/teacher/time_table_teacher')
-api.add_resource(DailyAttendanceUpdateResource, '/api/teacher/update_attendance_day')
 
 api.add_resource(TokenRefresh, '/api/token_refresh')
 

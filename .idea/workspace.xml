@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d656603-7e2d-4fec-ac54-45e77892e199" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/models/daily_attendance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/daily_attendance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_tables_first.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_tables_first.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/events.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/events.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/student_attendance.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/student_attendance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assignment.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assignment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/events.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/events.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/student_attendance.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/student_attendance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/daily_attendance.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/daily_attendance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/daily_attendance.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/daily_attendance.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/rest_api_ver_three$rest_api_ver_three.coverage" NAME="rest-api-ver-three Coverage Results" MODIFIED="1529582660410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rest_api_ver_three$rest_api_ver_three.coverage" NAME="rest-api-ver-three Coverage Results" MODIFIED="1529583753267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/rest_api_ver_three$create_tables_first.coverage" NAME="create_tables_first Coverage Results" MODIFIED="1529303279429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
@@ -43,11 +36,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="47" column="62" selection-start-line="47" selection-start-column="62" selection-end-line="47" selection-end-column="84" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="112">
+              <caret line="7" column="68" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -56,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/models/daily_attendance.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
-              <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
+              <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -64,50 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="daily_attendance.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="daily_attendance.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/daily_attendance.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="25" column="37" selection-start-line="23" selection-start-column="8" selection-end-line="25" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="student_attendance.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/student_attendance.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="93" column="36" lean-forward="true" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="student_attendance.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/student_attendance.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="62" column="50" lean-forward="true" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_tables_first.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/create_tables_first.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="24" column="84" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="student_main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/student_main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="7" selection-end-column="43" />
+            <state relative-caret-position="288">
+              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -118,7 +69,7 @@
       <file leaf-file-name="student_main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/student_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1184">
+            <state relative-caret-position="-194">
               <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
             </state>
           </provider>
@@ -159,12 +110,12 @@
         <option value="$PROJECT_DIR$/models/events.py" />
         <option value="$PROJECT_DIR$/resources/events.py" />
         <option value="$PROJECT_DIR$/resources/assignment.py" />
-        <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/models/daily_attendance.py" />
-        <option value="$PROJECT_DIR$/resources/daily_attendance.py" />
         <option value="$PROJECT_DIR$/create_tables_first.py" />
         <option value="$PROJECT_DIR$/resources/student_attendance.py" />
         <option value="$PROJECT_DIR$/models/student_attendance.py" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/models/daily_attendance.py" />
+        <option value="$PROJECT_DIR$/resources/daily_attendance.py" />
       </list>
     </option>
   </component>
@@ -316,7 +267,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32933104" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.32933104" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32933104" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4942857" visible="true" weight="0.3517398" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4942857" visible="true" weight="0.3517398" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -700,13 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/student_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1184">
-          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/student_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -717,40 +661,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="47" column="62" selection-start-line="47" selection-start-column="62" selection-end-line="47" selection-end-column="84" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/create_tables_first.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="24" column="84" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/daily_attendance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="37" selection-start-line="23" selection-start-column="8" selection-end-line="25" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/daily_attendance.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -763,8 +677,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/student_attendance.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="217">
           <caret line="62" column="50" lean-forward="true" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="68" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/student_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-194">
+          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/daily_attendance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="32" column="31" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/daily_attendance.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
