@@ -21,10 +21,13 @@ create_table_student_attendance = "CREATE TABLE IF NOT EXISTS student_attendance
                                   " semester integer, max_attendance int, present_attendance int)"
 create_table_student_marks = "CREATE TABLE IF NOT EXISTS student_marks (roll_no text, subject_code text, " \
                              "semester int, cat real, mid real, end real, assignment real, attendance real)"
+create_table_daily_attendance = "CREATE TABLE IF NOT EXISTS daily_attendance(roll_no text, subject_code text," \
+                                " semester integer, date text, day text, status text)"
 
 cursor.execute(create_table_student)
 cursor.execute(create_table_student_attendance)
 cursor.execute(create_table_student_marks)
+cursor.execute(create_table_daily_attendance)
 
 connection.commit()
 connection.close()

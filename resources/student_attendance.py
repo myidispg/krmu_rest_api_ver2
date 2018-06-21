@@ -1,6 +1,7 @@
 from flask_jwt_extended import jwt_required
 from flask_restful import Resource, reqparse
 
+from models.daily_attendance import DailyAttendanceModel
 from models.student_attendance import StudentAttendance
 from models.subjects import Subjects
 from models.student_main import StudentMain
@@ -83,10 +84,12 @@ class UpdateStudentAttendance(Resource):
     def post(self):
         data = UpdateStudentAttendance.parser.parse_args()
         attendance = data['attendance']
-        # StudentAttendance.set_attendance(data['subject_code'], data['semester'], attendance)
 
         for student in attendance:
-            dictionary = student
-            roll_no = dictionary['roll_no']
-            present = dictionary['present']
-            StudentAttendance.set_attendance(data['subject_code'], data['semester'], roll_no, present)
+            # roll_no = student['roll_no']
+            # present = student['present']
+            daily_attendance = DailyAttendanceModel(student['roll_no'], data['subject_code'], data['semester'],
+                                                    student['date'], student['day'], student['status'])
+            daily_attendance.save_to_db()
+            StudentAttendance.set_attendance(data['subject_code'], data['semester'],
+                                             student['roll_no'], student['status'])

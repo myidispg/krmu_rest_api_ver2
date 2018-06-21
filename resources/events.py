@@ -78,3 +78,25 @@ class EventSingle(Resource):
         event = EventsModel.find_by_event_code(event_code)
 
         return event.json()
+
+
+class EventsAll(Resource):
+
+    def get(self):
+        events_object_list = EventsModel.get_all_events()
+
+        events_dictionary = {
+            'events': []
+        }
+        for event in events_object_list:
+            dictionary = {
+                'event_code': event.event_code,
+                'event_name': event.event_name,
+                'event_description': event.event_description,
+                'start_date': event.start_date,
+                'end_date': event.end_date,
+                'start_time': event.start_time,
+                'end_time': event.end_time
+            }
+            events_dictionary['events'].append(dictionary)
+        return events_dictionary

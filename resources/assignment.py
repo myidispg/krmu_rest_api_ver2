@@ -143,10 +143,14 @@ class TeacherAllAssignmentResource(Resource):
         material_list = MaterialUploadModel.get_all_by_teacher_code(teacher_code)
         for material in material_list:
             filename = material['material_path']
-            file_list = filename.split('.')
-            file_extension = file_list[1]
-            material['material_path'] = file_extension
-            study_material_all['study_material'].append(material)
+            if filename is not None:
+                file_list = filename.split('.')
+                file_extension = file_list[1]
+                material['material_path'] = file_extension
+                study_material_all['study_material'].append(material)
+            else:
+                material['material_path'] = 'None'
+                study_material_all['study_material'].append(material)
 
         return study_material_all
 

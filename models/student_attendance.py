@@ -38,7 +38,7 @@ class StudentAttendance:
             }
 
     @classmethod
-    def set_attendance(cls, subject_code, semester, roll_no, present):
+    def set_attendance(cls, subject_code, semester, roll_no, status):
         semester = int(semester)
         connection = sqlite3.connect(DATABASE)
         cursor = connection.cursor()
@@ -47,13 +47,22 @@ class StudentAttendance:
                                " AND semester = ?"
         result = cursor.execute(query_check_presence, (roll_no, subject_code, semester))
         row = result.fetchone()
-        if row is not None and present == 'yes':
-            query_update_attendance = "UPDATE student_attendance SET present_attendance = present_attendance + 1," \
-                                          " max_attendance = max_attendance + 1 WHERE roll_no = ? AND" \
-                                          " subject_code = ? AND semester = ?"
-            cursor.execute(query_update_attendance, (roll_no, subject_code, semester,))
+        if row is not None:
+            if status == 'P':
+                query_update_attendance_present = "UPDATE student_attendance SET" \
+                                                  " present_attendance = present_attendance + 1," \
+                                                  " max_attendance = max_attendance + 1 WHERE roll_no = ? AND" \
+                                                  " subject_code = ? AND semester = ?"
+                cursor.execute(query_update_attendance_present, (roll_no, subject_code, semester,))
+            else:
+                if status == 'A':
+                    query_update_attendance_absent = "UPDATE student_attendance SET  " \
+                                                     "max_attendance = max_attendance + 1" \
+                                                     " WHERE roll_no = ? AND" \
+                                                     " subject_code = ? AND semester = ?"
+                    cursor.execute(query_update_attendance_absent, (roll_no, subject_code, semester,))
         else:
-            if present == 'yes':
+            if status == 'P':
                 query_insert_attendance = "INSERT INTO student_attendance values " \
                                               "(?,?,?,1,1)"
                 cursor.execute(query_insert_attendance, (roll_no, subject_code, semester,))

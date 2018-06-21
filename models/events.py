@@ -68,6 +68,22 @@ class EventsModel:
         connection.close()
         return final_counter
 
+    @classmethod
+    def get_all_events(cls):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM events"
+        result = cursor.execute(query)
+
+        rows = result.fetchall()
+        events_list = []
+        for row in rows:
+            event = cls(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+            events_list.append(event)
+        connection.close()
+        return events_list
+
     def json(self):
         return {
             'event_code': self.event_code,
