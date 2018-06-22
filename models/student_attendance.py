@@ -73,3 +73,16 @@ class StudentAttendance:
         connection.commit()
         connection.close()
         return {'message': 'attendance updated'}
+
+    @staticmethod
+    def increase_present_attendance(roll_no, subject_code, counter):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "UPDATE student_attendance SET present_attendance = present_attendance + ? " \
+                "WHERE roll_no = ? AND subject_code = ?"
+        cursor.execute(query, (counter, roll_no, subject_code,))
+
+        connection.commit()
+        connection.close()
+

@@ -7,7 +7,8 @@ from resources.assignment import MaterialUploadResource, MaterialSubmissionResou
     StudentSingleAssignmentResource, TeacherSingleAssignmentResource, StudentAllAssignmentsResource
 from resources.daily_attendance import GetDailyAttendanceStudent
 from resources.events import EventsRegistration, EventFile, EventSingle, EventsAll
-from resources.student_attendance import GetStudentAttendance, GetStudentAttendanceSemester, UpdateStudentAttendance
+from resources.student_attendance import GetStudentAttendance, GetStudentAttendanceSemester, UpdateStudentAttendance, \
+    ChangeStudentAttendance
 from resources.student_main import *
 from resources.student_marks import GetStudentMarks, GetStudentMarksSemester
 from resources.teacher_main import TeacherRegister, TeacherProfilePicture, TeacherLogin
@@ -46,6 +47,7 @@ api.add_resource(TeacherAllAssignmentResource, '/api/teacher/get_all_assignments
 api.add_resource(TeacherSingleAssignmentResource, '/api/teacher/get_single_assignment/<string:material_code>')
 api.add_resource(TeacherSingleAssignmentFileResource, '/api/teacher/get_single_assignment_file/<string:material_code>')
 api.add_resource(TimeTableTeacher, '/api/teacher/time_table_teacher')
+api.add_resource(ChangeStudentAttendance, '/api/teacher/change_student_attendance')
 
 api.add_resource(TokenRefresh, '/api/token_refresh')
 

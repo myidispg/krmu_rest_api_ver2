@@ -36,6 +36,32 @@ class DailyAttendanceModel:
         connection.close()
         return daily_attendance_list
 
+    @staticmethod
+    def change_daily_attendance(roll_no, subject_code, date):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT status from daily_attendance WHERE roll_no = ? AND subject_code = ? AND date=?"
+        result = cursor.execute(query, (roll_no, subject_code, date,))
+
+        rows = result.fetchall()
+        counter = 0
+        absent_flag = False  # this is used to see whether there is an absent case or not.
+        # If there is no absent case, the update query will not execute
+        for row in rows:
+            if row[0] == 'A':
+                counter += 1
+                absent_flag = True
+        if absent_flag is True:
+            query_update = "UPDATE daily_attendance SET status = ? WHERE roll_no = ?AND subject_code = ?" \
+                           " AND date=?"
+            cursor.execute(query_update, ('P', roll_no, subject_code, date))
+            connection.commit()
+        connection.close()
+        return {
+            'update_happened': absent_flag,
+            'counter': counter
+        }
 
     def save_to_db(self):
         connection = sqlite3.connect(DATABASE)

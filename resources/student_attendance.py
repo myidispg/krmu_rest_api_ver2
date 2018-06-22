@@ -93,3 +93,28 @@ class UpdateStudentAttendance(Resource):
             daily_attendance.save_to_db()
             StudentAttendance.set_attendance(data['subject_code'], data['semester'],
                                              student['roll_no'], student['status'])
+
+
+class ChangeStudentAttendance(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('roll_no', type=str, required=True, help='Student Roll No is required')
+    parser.add_argument('subject_code', type=str, required=True, help='Subject code is required')
+    parser.add_argument('date', type=str, required=True, help='Date of change is required')
+
+    def post(self):
+        data = self.parser.parse_args()
+
+        update_happened = DailyAttendanceModel.change_daily_attendance(data['roll_no'], data['subject_code'], data['date'])
+
+        if update_happened['update_happened']:
+            StudentAttendance.increase_present_attendance(data['roll_no'], data['subject_code'],
+                                                          update_happened['counter'])
+            return {
+                'message': 'The student has been marked present for the day'
+            }
+        else:
+            return {
+                'message': 'The student was already marked present on that day'
+            }
+
+
