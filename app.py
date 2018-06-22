@@ -7,6 +7,7 @@ from resources.assignment import MaterialUploadResource, MaterialSubmissionResou
     StudentSingleAssignmentResource, TeacherSingleAssignmentResource, StudentAllAssignmentsResource
 from resources.daily_attendance import GetDailyAttendanceStudent
 from resources.events import EventsRegistration, EventFile, EventSingle, EventsAll
+from resources.events_interested import AddEventInterest
 from resources.student_attendance import GetStudentAttendance, GetStudentAttendanceSemester, UpdateStudentAttendance, \
     ChangeStudentAttendance
 from resources.student_main import *
@@ -55,6 +56,7 @@ api.add_resource(EventsRegistration, '/api/events/registration')
 api.add_resource(EventFile, '/api/events/file/<string:event_code>')
 api.add_resource(EventSingle, '/api/events/single/<string:event_code>')
 api.add_resource(EventsAll, '/api/events/get_all')
+api.add_resource(AddEventInterest, '/api/events/add_event_interest')
 
 
 if __name__ == '__main__':
