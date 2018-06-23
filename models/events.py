@@ -8,7 +8,7 @@ DATABASE = SCHOOLS_DATABASE
 class EventsModel:
 
     def __init__(self, event_code, event_name, event_description, start_date, end_date, start_time, end_time,
-                 venue, file_path):
+                 venue, file_path, organiser_code, new_interest):
         self.event_code = event_code
         self.event_name = event_name
         self.event_description = event_description
@@ -18,6 +18,8 @@ class EventsModel:
         self.end_time = end_time
         self.venue = venue
         self.file_path = file_path
+        self.organiser_code = organiser_code
+        self.new_interest = new_interest
 
     @classmethod
     def find_by_event_code(cls, event_code):
@@ -29,7 +31,8 @@ class EventsModel:
 
         row = result.fetchone()
         if row is not None:
-            event = cls(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+            event = cls(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
+                        row[10])
             connection.close()
             return event
 
@@ -40,9 +43,10 @@ class EventsModel:
         connection = sqlite3.connect(DATABASE)
         cursor = connection.cursor()
 
-        query = "INSERT INTO events VALUES (?,?,?,?,?,?,?,?,?)"
+        query = "INSERT INTO events VALUES (?,?,?,?,?,?,?,?,?,?,?)"
         cursor.execute(query, (self.event_code, self.event_name, self.event_description, self.start_date,
-                               self.end_date, self.start_time, self.end_time, self.venue, self.file_path,))
+                               self.end_date, self.start_time, self.end_time, self.venue,
+                               self.file_path, self.organiser_code,self.new_interest))
 
         connection.commit()
         connection.close()
@@ -79,7 +83,8 @@ class EventsModel:
         rows = result.fetchall()
         events_list = []
         for row in rows:
-            event = cls(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+            event = cls(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8],
+                        row[9], row[10])
             events_list.append(event)
         connection.close()
         return events_list
@@ -93,9 +98,21 @@ class EventsModel:
             'end_date': self.end_date,
             'start_time': self.start_time,
             'end_time': self.end_time,
-            'venue': self.venue
+            'venue': self.venue,
+            'organiser_code': self.organiser_code,
+            'new_interest': self.new_interest
         }
 
+    @staticmethod
+    def change_new_interest(event_code, interest):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "UPDATE events SET new_interest = ? where event_code = ?"
+        cursor.execute(query, (interest, event_code,))
+
+        connection.commit()
+        connection.close()
 
 
 

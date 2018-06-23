@@ -19,6 +19,7 @@ class EventsRegistration(Resource):
     parser.add_argument('venue', type=str, required=False)
     parser.add_argument('file', type=werkzeug.datastructures.FileStorage, required=False,
                         help='file is required', location='files')
+    parser.add_argument('organiser_code', type=str, required=True, help='organiser_code is required')
 
     ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'ppt', 'docx', 'jpg', 'png', 'jpeg'])
     UPLOAD_FOLDER_SUBMISSIONS_PATH = "C:\KRMU_App\database\events"
@@ -44,12 +45,13 @@ class EventsRegistration(Resource):
                 file.save(new_file_name)
                 event = EventsModel(event_code, data['event_name'], data['event_description'], data['start_date'],
                                     data['end_date'], data['start_time'], data['end_time'], data['venue'],
-                                    new_file_name)
+                                    new_file_name, data['organiser_code'], 'N')
                 event.save_to_db()
 
         else:
             event = EventsModel(event_code, data['event_name'], data['event_description'], data['start_date'],
-                                data['end_date'], data['start_time'], data['end_time'], data['venue'], None)
+                                data['end_date'], data['start_time'], data['end_time'], data['venue'],
+                                None, data['organiser_code'], 'N')
             event.save_to_db()
         return {
            'message': 'Event registration successful'
@@ -96,7 +98,9 @@ class EventsAll(Resource):
                 'start_date': event.start_date,
                 'end_date': event.end_date,
                 'start_time': event.start_time,
-                'end_time': event.end_time
+                'end_time': event.end_time,
+                'organiser_code': event.organiser_code,
+                'new_interest': event.new_interest
             }
             events_dictionary['events'].append(dictionary)
         return events_dictionary

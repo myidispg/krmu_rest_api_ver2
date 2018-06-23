@@ -21,3 +21,42 @@ class EventsInterestedModel:
         connection.commit()
         connection.close()
 
+    @staticmethod
+    def get_all_interested_event_code(event_code):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * from event_interested WHERE event_code = ? "
+        result = cursor.execute(query, (event_code,))
+
+        rows = result.fetchall()
+        interested_list = []
+        for row in rows:
+            dictionary = {
+                'event_code': row[0],
+                'roll_no': row[1]
+            }
+            interested_list.append(dictionary)
+
+        connection.close()
+        return interested_list
+
+    @staticmethod
+    def get_all_interested_roll_no(roll_no):
+        connection = sqlite3.connect(DATABASE)
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM event_interested where roll_no = ?"
+        result = cursor.execute(query, (roll_no,))
+
+        rows = result.fetchall()
+        interested_list = []
+        for row in rows:
+            dictionary = {
+                'event_code': row[0],
+                'roll_no': row[1]
+            }
+            interested_list.append(dictionary)
+
+        connection.close()
+        return interested_list
